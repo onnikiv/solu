@@ -126,7 +126,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk-right",
-"speed": 4.0
+"speed": 5.0
 }]
 
 [node name="Player" type="CharacterBody2D"]
