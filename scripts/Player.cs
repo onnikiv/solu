@@ -3,33 +3,50 @@ using System;
 
 public partial class Player : CharacterBody2D
 {
-	public const float Speed = 300.0f;
+    public const float Speed = 300.0f;
 
-	public override void _PhysicsProcess(double delta)
-	{
-		Vector2 velocity = Vector2.Zero;
+    private string playerFacing = "south";
+    private AnimatedSprite2D animatedSprite;
 
-		Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
-		
-		switch (direction)
-		{
-			case (1,0):
-			GD.Print("RIGHT");
-				break;
-			case (-1,0):
-				GD.Print("LEFT");
-				break;
-			case (0,1):
-			GD.Print("UP");
-				break;
+    public override void _Ready()
+    {
+        animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+    }
 
-			case (0,-1):
-			GD.Print("DOWN");
-				break;
-		}
+    public override void _PhysicsProcess(double delta)
+    {
+        Vector2 velocity = Vector2.Zero;
 
-    velocity = direction * Speed;
-    Velocity = velocity;
-    MoveAndSlide();
-	}
+        Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
+
+
+            if (direction == Vector2.Right)
+            {
+                animatedSprite.Play("animation_walk_east");
+                playerFacing = "east";
+            }
+            else if (direction == Vector2.Left)
+            {
+                animatedSprite.Play("animation_walk_west");
+                playerFacing = "west";
+            }
+            else if (direction == Vector2.Up)
+            {
+                animatedSprite.Play("animation_walk_north");
+                playerFacing = "north";
+            }
+            else if (direction == Vector2.Down)
+            {
+                animatedSprite.Play("animation_walk_south");
+                playerFacing = "south";
+            }
+            else
+            {
+                animatedSprite.Play($"animation_idle_{playerFacing}");
+            }
+
+        velocity = direction * Speed;
+        Velocity = velocity;
+        MoveAndSlide();
+    }
 }
