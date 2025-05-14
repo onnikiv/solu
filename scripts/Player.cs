@@ -3,58 +3,33 @@ using System;
 
 public partial class Player : CharacterBody2D
 {
-	public const float Speed = 200.0f;
-	public const float JumpVelocity = -300.0f;
-	private bool movingRight = true;
-
-	private AnimatedSprite2D animatedSprite;
-
-	public override void _Ready()
-	{
-		animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
-	}
+	public const float Speed = 300.0f;
 
 	public override void _PhysicsProcess(double delta)
 	{
-		Vector2 velocity = Velocity;
+		Vector2 velocity = Vector2.Zero;
 
-		// Add gravity
-		if (!IsOnFloor())
-		{
-			velocity += GetGravity() * (float)delta;
-		}
-
-		// Jump
-		if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
-		{
-			velocity.Y = JumpVelocity;
-		}
-
-		// Movement and animation
 		Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
-
-		if (direction != Vector2.Zero)
+		
+		switch (direction)
 		{
-			velocity.X = direction.X * Speed;
+			case (1,0):
+			GD.Print("RIGHT");
+				break;
+			case (-1,0):
+				GD.Print("LEFT");
+				break;
+			case (0,1):
+			GD.Print("UP");
+				break;
 
-			if (direction.X > 0)
-			{
-				animatedSprite.Play("walk-right");
-				movingRight = true;
-			}
-			else if (direction.X < 0)
-			{
-				animatedSprite.Play("walk-left");
-				movingRight = false;
-			}
-		}
-		else
-		{
-			velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
-			animatedSprite.Play(movingRight ? "idle-right" : "idle-left");
+			case (0,-1):
+			GD.Print("DOWN");
+				break;
 		}
 
-		Velocity = velocity;
-		MoveAndSlide();
+    velocity = direction * Speed;
+    Velocity = velocity;
+    MoveAndSlide();
 	}
 }
