@@ -1,4 +1,3 @@
 # Solu
-todo testailu + obettelu Godot peli C#
 
-### Nyt toimii GitAddon
+![alt text](images/Solu.png)
