@@ -374,4 +374,4 @@ position = Vector2(1, -16)
 sprite_frames = SubResource("SpriteFrames_dqkch")
 animation = &"animation_walk_east"
 autoplay = "animation_idle_south"
-frame_progress = 0.551309
+frame_progress = 0.227278
