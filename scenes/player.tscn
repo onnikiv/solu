@@ -4,7 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://cn0l7u0ehfae6" path="res://assets/player-model/player_model_walk.png" id="2_qhqgy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2els"]
-radius = 4.0
+radius = 3.0
+height = 6.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dqkch"]
 atlas = ExtResource("1_g2els")
@@ -367,11 +368,11 @@ animations = [{
 [node name="Player" type="CharacterBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, -16)
+position = Vector2(-19, -5)
 shape = SubResource("CapsuleShape2D_g2els")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(1, -16)
+position = Vector2(-18, -18)
 sprite_frames = SubResource("SpriteFrames_dqkch")
 animation = &"idle-down"
 autoplay = "idle-down"

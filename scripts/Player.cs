@@ -3,7 +3,7 @@ using System;
 
 public partial class Player : CharacterBody2D
 {
-    public const float Speed = 200.0f;
+    public const float Speed = 150.0f;
 
     // initial direction the player model is facing
     private string playerFacing = "down";

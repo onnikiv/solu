@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://cpa0i6b8d7ic1"]
+
+[ext_resource type="Texture2D" uid="uid://clyorgmytyap1" path="res://assets/turkey-model/turkey_model_idle.png" id="1_petjv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3a16h"]
+atlas = ExtResource("1_petjv")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_opukp"]
+atlas = ExtResource("1_petjv")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_enxdg"]
+atlas = ExtResource("1_petjv")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11kni"]
+atlas = ExtResource("1_petjv")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_petjv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3a16h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_opukp")
+}],
+"loop": true,
+"name": &"idle-left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_enxdg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_11kni")
+}],
+"loop": true,
+"name": &"idle-right",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1r4m6"]
+radius = 15.0
+
+[node name="Turkey" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-18, -18)
+sprite_frames = SubResource("SpriteFrames_petjv")
+animation = &"idle-right"
+autoplay = "idle-left"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-16, -16)
+shape = SubResource("CapsuleShape2D_1r4m6")
+
+[node name="movingTimer" type="Timer" parent="."]
