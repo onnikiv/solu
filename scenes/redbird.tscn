@@ -1,0 +1,156 @@
+[gd_scene load_steps=20 format=3 uid="uid://bigywwlg3om4x"]
+
+[ext_resource type="Texture2D" uid="uid://c3yqtnr3c8pm7" path="res://assets/redbird-model/bird_model_fly.png" id="1_3psew"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i54yu"]
+atlas = ExtResource("1_3psew")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mgtre"]
+atlas = ExtResource("1_3psew")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_85fwx"]
+atlas = ExtResource("1_3psew")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ec62"]
+atlas = ExtResource("1_3psew")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yhsm6"]
+atlas = ExtResource("1_3psew")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s718c"]
+atlas = ExtResource("1_3psew")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t5cvt"]
+atlas = ExtResource("1_3psew")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khne1"]
+atlas = ExtResource("1_3psew")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_chid8"]
+atlas = ExtResource("1_3psew")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_23d4f"]
+atlas = ExtResource("1_3psew")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cqhr3"]
+atlas = ExtResource("1_3psew")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bf2lf"]
+atlas = ExtResource("1_3psew")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e1c3j"]
+atlas = ExtResource("1_3psew")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tfeij"]
+atlas = ExtResource("1_3psew")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b6u4j"]
+atlas = ExtResource("1_3psew")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wf1yy"]
+atlas = ExtResource("1_3psew")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_petjv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i54yu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mgtre")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_85fwx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ec62")
+}],
+"loop": true,
+"name": &"idle-left",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yhsm6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s718c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t5cvt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khne1")
+}],
+"loop": true,
+"name": &"idle-right",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_chid8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_23d4f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cqhr3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bf2lf")
+}],
+"loop": true,
+"name": &"walk-left",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e1c3j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tfeij")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b6u4j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wf1yy")
+}],
+"loop": true,
+"name": &"walk-right",
+"speed": 7.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1r4m6"]
+radius = 15.0
+
+[node name="Redbird" type="CharacterBody2D"]
+z_index = -1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-18, -18)
+sprite_frames = SubResource("SpriteFrames_petjv")
+animation = &"walk-left"
+autoplay = "idle-right"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = -1
+position = Vector2(-16, -16)
+shape = SubResource("CapsuleShape2D_1r4m6")
+disabled = true
