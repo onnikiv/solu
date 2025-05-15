@@ -114,15 +114,16 @@ animations = [{
 radius = 15.0
 
 [node name="Turkey" type="CharacterBody2D"]
+z_index = -1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-18, -18)
 sprite_frames = SubResource("SpriteFrames_petjv")
 animation = &"walk-right"
 autoplay = "idle-right"
-frame_progress = 0.902879
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = -1
 position = Vector2(-16, -16)
 shape = SubResource("CapsuleShape2D_1r4m6")
+disabled = true
