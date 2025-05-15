@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://cr0m5ngb3gk4u"]
+[gd_scene load_steps=19 format=4 uid="uid://cr0m5ngb3gk4u"]
 
 [ext_resource type="PackedScene" uid="uid://cwh50rsksjgnj" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://cf3rao7x05m08" path="res://scripts/Player.cs" id="2_yqjtg"]
@@ -32,15 +32,6 @@ texture = ExtResource("5_iywne")
 0:1/0 = 0
 1:1/0 = 0
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vtaks"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0tnpc"]
-texture = SubResource("CompressedTexture2D_vtaks")
-0:0/0 = 0
-1:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kvpfn"]
 texture = ExtResource("6_0tnpc")
 0:0/0 = 0
@@ -53,7 +44,6 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_lnu2h")
 sources/1 = SubResource("TileSetAtlasSource_iywne")
 sources/2 = SubResource("TileSetAtlasSource_p57ef")
-sources/3 = SubResource("TileSetAtlasSource_0tnpc")
 sources/6 = SubResource("TileSetAtlasSource_kvpfn")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dinhu"]
