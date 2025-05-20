@@ -2,17 +2,36 @@ using Godot;
 
 public partial class Weapon : Node2D
 {
-	// Called when the node enters the scene tree for the first time.
+	private Marker2D muzzle;
+	private AudioStreamPlayer2D shootAudio;
+
 	public override void _Ready()
 	{
+		muzzle = GetNode<Marker2D>("Muzzle");
+		shootAudio = GetNode<AudioStreamPlayer2D>("Shoot");
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	private float mousePosition;
+	public PackedScene BulletScene = GD.Load<PackedScene>("res://scenes/bullet.tscn");
+
 	public override void _Process(double delta)
 	{
-		// Get the global mouse position
-		Vector2 mousePosition = GetGlobalMousePosition();
-		// Point the weapon towards the mouse
-		LookAt(mousePosition);
+		LookAt(GetGlobalMousePosition());
+
+		mousePosition = (RotationDegrees % 360 + 360) % 360;
+
+		if (mousePosition > 90 && mousePosition < 270)
+			Scale = new Vector2(Scale.X, -1);
+		else
+			Scale = new Vector2(Scale.X, 1);
+
+		if (Input.IsActionJustPressed("fire"))
+		{
+			var bullet = BulletScene.Instantiate<Node2D>();
+			GetTree().CurrentScene.AddChild(bullet);
+			bullet.GlobalPosition = muzzle.GlobalPosition;
+			bullet.Rotation = Rotation;
+			shootAudio.Play();
+		}
 	}
 }

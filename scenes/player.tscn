@@ -1,8 +1,9 @@
-[gd_scene load_steps=51 format=3 uid="uid://cwh50rsksjgnj"]
+[gd_scene load_steps=52 format=3 uid="uid://cwh50rsksjgnj"]
 
 [ext_resource type="Texture2D" uid="uid://dhddclfrg57ag" path="res://assets/player-model/player_model_idle.png" id="1_g2els"]
 [ext_resource type="Script" uid="uid://cf3rao7x05m08" path="res://scripts/Player.cs" id="1_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://cn0l7u0ehfae6" path="res://assets/player-model/player_model_walk.png" id="2_qhqgy"]
+[ext_resource type="PackedScene" uid="uid://bnnakoim6nu1y" path="res://scenes/weapon.tscn" id="4_dqkch"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2els"]
 radius = 3.0
@@ -378,4 +379,4 @@ sprite_frames = SubResource("SpriteFrames_dqkch")
 animation = &"idle-down"
 autoplay = "idle-down"
 
-[node name="WeaponSocket" type="Node2D" parent="."]
+[node name="Weapon" parent="." instance=ExtResource("4_dqkch")]

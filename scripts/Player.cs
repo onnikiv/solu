@@ -4,69 +4,66 @@ using System;
 public partial class Player : CharacterBody2D
 {
 
-    public const float Speed = 150.0f;
+	public const float Speed = 150.0f;
 
-    // initial direction the player model is facing
-    private string playerFacing = "down";
-    private AnimatedSprite2D animatedSprite;
-    private Node2D weaponSocket;
+	private string playerFacing = "down";
+	private AnimatedSprite2D animatedSprite;
 
-    public override void _Ready()
-    {
-        animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 
-        weaponSocket = GetNode<Node2D>("WeaponSocket");
-        GD.Print("ASELADATTU");
+	public override void _Ready()
+	{
+		animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+		GD.Print("ASELADATTU");
 
-    }
+	}
 
-    public override void _PhysicsProcess(double delta)
-    {
-        Vector2 velocity = Vector2.Zero;
-        Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
-        MovePlayer(velocity, direction);
-    }
+	public override void _PhysicsProcess(double delta)
+	{
+		Vector2 velocity = Vector2.Zero;
+		Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
+		MovePlayer(velocity, direction);
+	}
 
-    public void MovePlayer(Vector2 velocity, Vector2 direction)
-    {
+	public void MovePlayer(Vector2 velocity, Vector2 direction)
+	{
 
-        if (direction == Vector2.Zero)
-        {
-            animatedSprite.Play($"idle-{playerFacing}");
-        }
-        else
-        {
-            if (direction.X > 0)
-            {
-                animatedSprite.Play("walk-right");
-                playerFacing = "right";
-            }
-            else if (direction.X < 0)
-            {
-                animatedSprite.Play("walk-left");
-                playerFacing = "left";
-            }
+		if (direction == Vector2.Zero)
+		{
+			animatedSprite.Play($"idle-{playerFacing}");
+		}
+		else
+		{
+			if (direction.X > 0)
+			{
+				animatedSprite.Play("walk-right");
+				playerFacing = "right";
+			}
+			else if (direction.X < 0)
+			{
+				animatedSprite.Play("walk-left");
+				playerFacing = "left";
+			}
 
-            if (direction.Y < 0)
-            {
-                if (direction.X == 0)
-                {
-                    animatedSprite.Play("walk-up");
-                    playerFacing = "up";
-                }
-            }
-            else if (direction.Y > 0)
-            {
-                if (direction.X == 0)
-                {
-                    animatedSprite.Play("walk-down");
-                    playerFacing = "down";
-                }
-            }
-        }
+			if (direction.Y < 0)
+			{
+				if (direction.X == 0)
+				{
+					animatedSprite.Play("walk-up");
+					playerFacing = "up";
+				}
+			}
+			else if (direction.Y > 0)
+			{
+				if (direction.X == 0)
+				{
+					animatedSprite.Play("walk-down");
+					playerFacing = "down";
+				}
+			}
+		}
 
-        velocity = direction.Normalized() * Speed;
-        Velocity = velocity;
-        MoveAndSlide();
-    }
+		velocity = direction.Normalized() * Speed;
+		Velocity = velocity;
+		MoveAndSlide();
+	}
 }

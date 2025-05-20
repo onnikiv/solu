@@ -2,10 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cwhh3qqn68i2k" path="res://scripts/Weapon.cs" id="1_qlv4w"]
 [ext_resource type="Texture2D" uid="uid://bmd06ry75gcy6" path="res://assets/weapons/gun-model/gun-rifle-model.png" id="2_e85vh"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_swcir"]
-atlas = ExtResource("2_e85vh")
-region = Rect2(0, 32, 32, 32)
+[ext_resource type="AudioStream" uid="uid://bfnqj4vkq36kw" path="res://assets/weapons/gun-model/hit-sound.ogg" id="3_bmw2d"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o2wld"]
 atlas = ExtResource("2_e85vh")
@@ -13,14 +10,6 @@ region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8xwfw"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_swcir")
-}],
-"loop": true,
-"name": &"gun-left",
-"speed": 5.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_o2wld")
@@ -35,4 +24,10 @@ script = ExtResource("1_qlv4w")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_8xwfw")
-animation = &"gun-left"
+animation = &"gun-right"
+
+[node name="Muzzle" type="Marker2D" parent="."]
+position = Vector2(16, 0)
+
+[node name="Shoot" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_bmw2d")
