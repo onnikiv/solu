@@ -7,7 +7,7 @@ public partial class Player : CharacterBody2D
 
 	// Animations - walk, idle
 	private string playerFacing = "down";
-	private AnimatedSprite2D animationFrames;
+	private AnimatedSprite2D animatedSprite2D;
 
 	// Weapon
 	private Node2D weaponSlot;
@@ -15,8 +15,8 @@ public partial class Player : CharacterBody2D
 
 	public override void _Ready()
 	{
-		animationFrames = GetNode<AnimatedSprite2D>("AnimationFrames");
-		animationFrames.Play($"idle-{playerFacing}");
+		animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+		animatedSprite2D.Play($"idle-{playerFacing}");
 
 		weaponSlot = GetNode<Node2D>("WeaponSlot");
 
@@ -44,14 +44,14 @@ public partial class Player : CharacterBody2D
 			else
 				playerFacing = direction.Y > 0 ? "down" : "up";
 
-			animationFrames.Play($"walk-{playerFacing}");
+			animatedSprite2D.Play($"walk-{playerFacing}");
 			velocity = direction * SPEED;
 			Velocity = velocity;
 			MoveAndSlide();
 		}
 		else
 		{
-			animationFrames.Play($"idle-{playerFacing}");
+			animatedSprite2D.Play($"idle-{playerFacing}");
 		}
 	}
 

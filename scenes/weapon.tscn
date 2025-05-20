@@ -1,18 +1,18 @@
 [gd_scene load_steps=7 format=3 uid="uid://bnnakoim6nu1y"]
 
 [ext_resource type="Script" uid="uid://cwhh3qqn68i2k" path="res://scripts/Weapon.cs" id="1_qlv4w"]
-[ext_resource type="Texture2D" uid="uid://bmd06ry75gcy6" path="res://assets/weapons/gun-model/gun-rifle-model.png" id="2_e85vh"]
-[ext_resource type="AudioStream" uid="uid://bfnqj4vkq36kw" path="res://assets/weapons/gun-model/hit-sound.ogg" id="3_bmw2d"]
+[ext_resource type="Texture2D" uid="uid://w4q1p30pjm34" path="res://assets/weapons/rifle/weapon-rifle.png" id="2_bmw2d"]
+[ext_resource type="AudioStream" uid="uid://bfnqj4vkq36kw" path="res://assets/weapons/rifle/hit-sound.ogg" id="3_bmw2d"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_o2wld"]
-atlas = ExtResource("2_e85vh")
+[sub_resource type="AtlasTexture" id="AtlasTexture_8fp1k"]
+atlas = ExtResource("2_bmw2d")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8xwfw"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_o2wld")
+"texture": SubResource("AtlasTexture_8fp1k")
 }],
 "loop": true,
 "name": &"gun-right",

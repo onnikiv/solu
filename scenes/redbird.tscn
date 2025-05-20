@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://bigywwlg3om4x"]
 
-[ext_resource type="Texture2D" uid="uid://c3yqtnr3c8pm7" path="res://assets/redbird-model/bird_model_fly.png" id="1_3psew"]
+[ext_resource type="Texture2D" uid="uid://xpoq41adye40" path="res://assets/npcs/redbird/bird-walk.png" id="1_3psew"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i54yu"]
 atlas = ExtResource("1_3psew")
@@ -146,7 +146,7 @@ z_index = -1
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-18, -18)
 sprite_frames = SubResource("SpriteFrames_petjv")
-animation = &"walk-left"
+animation = &"idle-right"
 autoplay = "idle-right"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

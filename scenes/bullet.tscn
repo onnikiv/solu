@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cqh3so67wijj4"]
 
-[ext_resource type="Texture2D" uid="uid://dxma1r2id6ypa" path="res://assets/weapons/gun-model/mud.png" id="1_mkf8s"]
+[ext_resource type="Texture2D" uid="uid://dxma1r2id6ypa" path="res://assets/weapons/rifle/mud.png" id="1_mkf8s"]
 [ext_resource type="Script" uid="uid://d2diy3jqbtudc" path="res://scripts/Bullet.cs" id="1_y25gk"]
 
 [node name="Bullet" type="Node2D"]
