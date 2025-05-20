@@ -66,4 +66,37 @@ public partial class Player : CharacterBody2D
 		Velocity = velocity;
 		MoveAndSlide();
 	}
+
+	public void SetFacingByShootDirection(Vector2 shootDir)
+	{
+		if (shootDir == Vector2.Zero)
+			return;
+
+		if (Mathf.Abs(shootDir.X) > Mathf.Abs(shootDir.Y))
+		{
+			if (shootDir.X > 0)
+			{
+				animatedSprite.Play("idle-right");
+				playerFacing = "right";
+			}
+			else
+			{
+				animatedSprite.Play("idle-left");
+				playerFacing = "left";
+			}
+		}
+		else
+		{
+			if (shootDir.Y > 0)
+			{
+				animatedSprite.Play("idle-down");
+				playerFacing = "down";
+			}
+			else
+			{
+				animatedSprite.Play("idle-up");
+				playerFacing = "up";
+			}
+		}
+	}
 }

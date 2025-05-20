@@ -32,6 +32,14 @@ public partial class Weapon : Node2D
 			bullet.GlobalPosition = muzzle.GlobalPosition;
 			bullet.Rotation = Rotation;
 			shootAudio.Play();
+
+			// Set player facing based on shoot direction
+			var player = GetParent<Player>();
+			if (player != null)
+			{
+				Vector2 shootDir = (GetGlobalMousePosition() - GlobalPosition).Normalized();
+				player.SetFacingByShootDirection(shootDir);
+			}
 		}
 	}
 }
