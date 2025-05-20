@@ -3,7 +3,7 @@ using System;
 
 public partial class Bullet : Node2D
 {
-	private const float SPEED = 400f;
+	private const float SPEED = 700f;
 
 	public override void _Ready()
 	{

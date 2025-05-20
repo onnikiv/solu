@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bnnakoim6nu1y"]
+[gd_scene load_steps=7 format=3 uid="uid://bnnakoim6nu1y"]
 
 [ext_resource type="Script" uid="uid://cwhh3qqn68i2k" path="res://scripts/Weapon.cs" id="1_qlv4w"]
 [ext_resource type="Texture2D" uid="uid://bmd06ry75gcy6" path="res://assets/weapons/gun-model/gun-rifle-model.png" id="2_e85vh"]
@@ -19,6 +19,10 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bmw2d"]
+radius = 7.0
+height = 32.0
+
 [node name="Weapon" type="Node2D"]
 script = ExtResource("1_qlv4w")
 
@@ -31,3 +35,12 @@ position = Vector2(16, 0)
 
 [node name="Shoot" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_bmw2d")
+
+[node name="Area2D" type="Area2D" parent="."]
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_bmw2d")
+one_way_collision_margin = 0.0
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

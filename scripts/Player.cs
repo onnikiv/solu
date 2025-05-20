@@ -1,19 +1,24 @@
 using Godot;
 using System;
-
+using System.Collections.Generic;
 public partial class Player : CharacterBody2D
 {
+	public const float SPEED = 150.0f;
 
-	public const float Speed = 150.0f;
-
+	// Animations - walk, idle
 	private string playerFacing = "down";
-	private AnimatedSprite2D animatedSprite;
+	private AnimatedSprite2D animationFrames;
 
+	// Weapon
+	private Node2D weaponSlot;
+	private Node currentWeapon;
 
 	public override void _Ready()
 	{
-		animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
-		GD.Print("ASELADATTU");
+		animationFrames = GetNode<AnimatedSprite2D>("AnimationFrames");
+		animationFrames.Play($"idle-{playerFacing}");
+
+		weaponSlot = GetNode<Node2D>("WeaponSlot");
 
 	}
 
@@ -22,80 +27,65 @@ public partial class Player : CharacterBody2D
 		Vector2 velocity = Vector2.Zero;
 		Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
 		MovePlayer(velocity, direction);
+
+		if (Input.IsActionJustPressed("ui_accept"))
+		{
+			DropWeapon();
+		}
 	}
 
 	public void MovePlayer(Vector2 velocity, Vector2 direction)
 	{
-
-		if (direction == Vector2.Zero)
+		if (direction != Vector2.Zero)
 		{
-			animatedSprite.Play($"idle-{playerFacing}");
+
+			if (Math.Abs(direction.X) > Math.Abs(direction.Y))
+				playerFacing = direction.X > 0 ? "right" : "left";
+			else
+				playerFacing = direction.Y > 0 ? "down" : "up";
+
+			animationFrames.Play($"walk-{playerFacing}");
+			velocity = direction * SPEED;
+			Velocity = velocity;
+			MoveAndSlide();
 		}
 		else
 		{
-			if (direction.X > 0)
-			{
-				animatedSprite.Play("walk-right");
-				playerFacing = "right";
-			}
-			else if (direction.X < 0)
-			{
-				animatedSprite.Play("walk-left");
-				playerFacing = "left";
-			}
-
-			if (direction.Y < 0)
-			{
-				if (direction.X == 0)
-				{
-					animatedSprite.Play("walk-up");
-					playerFacing = "up";
-				}
-			}
-			else if (direction.Y > 0)
-			{
-				if (direction.X == 0)
-				{
-					animatedSprite.Play("walk-down");
-					playerFacing = "down";
-				}
-			}
+			animationFrames.Play($"idle-{playerFacing}");
 		}
-
-		velocity = direction.Normalized() * Speed;
-		Velocity = velocity;
-		MoveAndSlide();
 	}
 
-	public void SetFacingByShootDirection(Vector2 shootDir)
-	{
-		if (shootDir == Vector2.Zero)
-			return;
 
-		if (Mathf.Abs(shootDir.X) > Mathf.Abs(shootDir.Y))
+	public void EquipWeapon(PackedScene weaponScene)
+	{
+		currentWeapon?.QueueFree();
+
+		currentWeapon = weaponScene.Instantiate();
+		weaponSlot.AddChild(currentWeapon);
+	}
+	
+	public void UnEquipWeapon()
+	{
+		if (currentWeapon != null)
 		{
-			if (shootDir.X > 0)
-			{
-				animatedSprite.Play("idle-right");
-				playerFacing = "right";
-			}
-			else
-			{
-				animatedSprite.Play("idle-left");
-				playerFacing = "left";
-			}
+			currentWeapon.QueueFree();
+			currentWeapon = null;
 		}
-		else
+	}
+
+	public void DropWeapon()
+	{
+		if (currentWeapon != null)
 		{
-			if (shootDir.Y > 0)
+
+			Node droppedWeapon = currentWeapon;
+			currentWeapon = null;
+			droppedWeapon.GetParent().RemoveChild(droppedWeapon);
+
+			GetTree().Root.AddChild(droppedWeapon);
+			if (droppedWeapon is Node2D node2D)
 			{
-				animatedSprite.Play("idle-down");
-				playerFacing = "down";
-			}
-			else
-			{
-				animatedSprite.Play("idle-up");
-				playerFacing = "up";
+				node2D.GlobalPosition = GlobalPosition;
 			}
 		}
 	}

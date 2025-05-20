@@ -4,18 +4,55 @@ public partial class Weapon : Node2D
 {
 	private Marker2D muzzle;
 	private AudioStreamPlayer2D shootAudio;
+	private bool canPickUp = false;
+	private Player playerInRange;
+	private float mousePosition;
+	public PackedScene BulletScene = GD.Load<PackedScene>("res://scenes/bullet.tscn");
 
 	public override void _Ready()
 	{
 		muzzle = GetNode<Marker2D>("Muzzle");
 		shootAudio = GetNode<AudioStreamPlayer2D>("Shoot");
+		var area = GetNode<Area2D>("Area2D");
+		area.BodyEntered += OnBodyEntered;
+		area.BodyExited += OnBodyExited;
 	}
 
-	private float mousePosition;
-	public PackedScene BulletScene = GD.Load<PackedScene>("res://scenes/bullet.tscn");
+	private void OnBodyEntered(Node body)
+	{
+		if (body is Player player)
+		{
+			canPickUp = true;
+			playerInRange = player;
+		}
+	}
+
+	private void OnBodyExited(Node body)
+	{
+		if (body == playerInRange)
+		{
+			canPickUp = false;
+			playerInRange = null;
+		}
+	}
 
 	public override void _Process(double delta)
 	{
+		if (canPickUp && Input.IsActionJustPressed("ui_accept"))
+		{
+			playerInRange.EquipWeapon((PackedScene)GD.Load(SceneFilePath));
+			QueueFree();
+		}
+
+		// Jos parentti ei oo null
+		if (GetParent() != null && GetParent().Name == "WeaponSlot")
+		{
+			UseGun();
+		}
+	}
+
+	public void UseGun() {
+
 		LookAt(GetGlobalMousePosition());
 
 		mousePosition = (RotationDegrees % 360 + 360) % 360;
@@ -33,13 +70,7 @@ public partial class Weapon : Node2D
 			bullet.Rotation = Rotation;
 			shootAudio.Play();
 
-			// Set player facing based on shoot direction
-			var player = GetParent<Player>();
-			if (player != null)
-			{
-				Vector2 shootDir = (GetGlobalMousePosition() - GlobalPosition).Normalized();
-				player.SetFacingByShootDirection(shootDir);
-			}
 		}
 	}
 }
+

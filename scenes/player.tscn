@@ -1,13 +1,8 @@
-[gd_scene load_steps=52 format=3 uid="uid://cwh50rsksjgnj"]
+[gd_scene load_steps=50 format=3 uid="uid://cwh50rsksjgnj"]
 
 [ext_resource type="Texture2D" uid="uid://dhddclfrg57ag" path="res://assets/player-model/player_model_idle.png" id="1_g2els"]
 [ext_resource type="Script" uid="uid://cf3rao7x05m08" path="res://scripts/Player.cs" id="1_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://cn0l7u0ehfae6" path="res://assets/player-model/player_model_walk.png" id="2_qhqgy"]
-[ext_resource type="PackedScene" uid="uid://bnnakoim6nu1y" path="res://scenes/weapon.tscn" id="4_dqkch"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2els"]
-radius = 3.0
-height = 6.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dqkch"]
 atlas = ExtResource("1_g2els")
@@ -185,10 +180,6 @@ region = Rect2(96, 192, 32, 32)
 atlas = ExtResource("2_qhqgy")
 region = Rect2(128, 192, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4gjji"]
-atlas = ExtResource("2_qhqgy")
-region = Rect2(160, 192, 32, 32)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_dqkch"]
 animations = [{
 "frames": [{
@@ -271,7 +262,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk-down",
-"speed": 10.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -297,7 +288,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk-left",
-"speed": 10.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -326,7 +317,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk-right",
-"speed": 10.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -358,25 +349,29 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_mx1m4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4gjji")
 }],
 "loop": true,
 "name": &"walk-up",
-"speed": 10.0
+"speed": 15.0
 }]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2els"]
+radius = 9.0
+height = 32.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_qhqgy")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_g2els")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimationFrames" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -6)
 sprite_frames = SubResource("SpriteFrames_dqkch")
 animation = &"idle-down"
 autoplay = "idle-down"
+frame_progress = 0.135533
 
-[node name="Weapon" parent="." instance=ExtResource("4_dqkch")]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_g2els")
+
+[node name="WeaponSlot" type="Node2D" parent="."]
