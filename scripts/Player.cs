@@ -48,6 +48,15 @@ public partial class Player : CharacterBody2D
 			velocity = direction * SPEED;
 			Velocity = velocity;
 			MoveAndSlide();
+
+			// Put weapon behind the player if going up
+			if (currentWeapon is Node2D weaponNode)
+			{
+				if (playerFacing == "up")
+					weaponNode.ZIndex = -1;
+				else
+					weaponNode.ZIndex = 1;
+			}
 		}
 		else
 		{
