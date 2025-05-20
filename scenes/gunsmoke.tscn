@@ -58,4 +58,4 @@ animations = [{
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_nqrbc")
 autoplay = "default"
-frame_progress = 0.571866
+frame_progress = 0.29971
