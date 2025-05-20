@@ -105,4 +105,4 @@ position = Vector2(526, 79)
 
 [node name="WorldCollision" type="CollisionPolygon2D" parent="WorldBody"]
 position = Vector2(-108, -88)
-polygon = PackedVector2Array(-274, -201, -690, -201, -690, 120, -274, 120, -274, -4, -244, 151, -286, 153, -721, 149, -711, -215, -234, -227, -274, -5)
+polygon = PackedVector2Array(-274, -201, -690, -201, -690, 120, -274, 120, -274, 28.7834, -274, -4, -244, 151, -286, 153, -721, 149, -711, -215, -234, -227, -274, -5)
