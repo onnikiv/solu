@@ -3,21 +3,32 @@ using System;
 
 public partial class Player : CharacterBody2D
 {
+
     public const float Speed = 150.0f;
 
     // initial direction the player model is facing
     private string playerFacing = "down";
     private AnimatedSprite2D animatedSprite;
+    private Node2D weaponSocket;
 
     public override void _Ready()
     {
         animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+
+        weaponSocket = GetNode<Node2D>("WeaponSocket");
+        GD.Print("ASELADATTU");
+
     }
 
     public override void _PhysicsProcess(double delta)
     {
         Vector2 velocity = Vector2.Zero;
         Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
+        MovePlayer(velocity, direction);
+    }
+
+    public void MovePlayer(Vector2 velocity, Vector2 direction)
+    {
 
         if (direction == Vector2.Zero)
         {

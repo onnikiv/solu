@@ -1,7 +1,7 @@
 [gd_scene load_steps=21 format=4 uid="uid://cr0m5ngb3gk4u"]
 
 [ext_resource type="PackedScene" uid="uid://cwh50rsksjgnj" path="res://scenes/player.tscn" id="1_uwrxv"]
-[ext_resource type="Script" uid="uid://cf3rao7x05m08" path="res://scripts/Player.cs" id="2_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://bnnakoim6nu1y" path="res://scenes/weapon.tscn" id="2_dinhu"]
 [ext_resource type="Texture2D" uid="uid://ioi26lqxabn7" path="res://assets/world/brick-tile.png" id="3_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://d06ay3sqijb7k" path="res://assets/world/grass-tile.png" id="4_lbhrr"]
 [ext_resource type="Texture2D" uid="uid://c622dv3jbsqa1" path="res://assets/world/swamp-tile.png" id="5_iywne"]
@@ -150,7 +150,6 @@ sources/2 = SubResource("TileSetAtlasSource_kvuet")
 
 [node name="Player" parent="." instance=ExtResource("1_uwrxv")]
 position = Vector2(-25, 31)
-script = ExtResource("2_yqjtg")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(1, -13)
@@ -158,6 +157,8 @@ zoom = Vector2(4, 4)
 process_callback = 0
 position_smoothing_speed = 100.0
 rotation_smoothing_speed = 10.0
+
+[node name="Weapon" parent="Player" instance=ExtResource("2_dinhu")]
 
 [node name="Ground" type="TileMapLayer" parent="."]
 z_index = -2
