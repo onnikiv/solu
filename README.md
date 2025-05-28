@@ -1,10 +1,6 @@
 # Solu - Reap the Forest with John Cutlet
 
-## ![new-model](1.README-images/player-walk.gif)
-
-## ![player-idle](1.README-images/player-idle.gif)
-
-## ![player-walk-down](1.README-images/player-walk-down.gif)
+## ![new-model](1.README-images/player-walk.gif) ![player-walk-down](1.README-images/player-walk-down.gif) ![player-idle](1.README-images/player-idle.gif)
 
 ## ![rifle-shoot](1.README-images/rifle-shooting-animation.gif)
 
